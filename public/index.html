@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#181632">
+  <meta name="description" content="Prepare and publish notes to three live room displays.">
+  <title>Roomcast</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div id="app"></div>
+  <div id="notification" class="toast" role="status" hidden></div>
+  <dialog id="dialog" aria-labelledby="dialog-title">
+    <form method="dialog">
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-message"></p>
+      <div id="dialog-content" hidden></div>
+      <div class="dialog-actions">
+        <button value="cancel" class="button button-light" autofocus>Cancel</button>
+        <button value="confirm" class="button button-primary" id="dialog-confirm"></button>
+      </div>
+    </form>
+  </dialog>
+  <noscript>This site needs JavaScript to receive live room updates.</noscript>
+</body>
+</html>
