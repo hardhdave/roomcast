@@ -19,6 +19,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 PUBLIC = ROOT / "public"
+PAGE_TEMPLATE = ROOT / "templates" / "index.html"
 DATABASE = Path(os.environ.get("BOARD_DATABASE", ROOT / "data" / "board.sqlite3"))
 DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("POSTGRES_URL")
 PUBLIC_ORIGIN = os.environ.get("BOARD_PUBLIC_ORIGIN", "").rstrip("/")
@@ -579,7 +580,7 @@ class Handler(BaseHTTPRequestHandler):
             files = {"/app.js": ("app.js", "text/javascript; charset=utf-8"),
                      "/styles.css": ("styles.css", "text/css; charset=utf-8")}
             if re.fullmatch(r"/(?:admin(?:/[1-3])?/?|rooms/[1-3]/?)?", path):
-                files[path] = ("index.html", "text/html; charset=utf-8")
+                return self.send(200, PAGE_TEMPLATE.read_bytes(), "text/html; charset=utf-8")
             if path in files:
                 name, mime = files[path]
                 return self.send(200, (PUBLIC / name).read_bytes(), mime)
